@@ -3,6 +3,11 @@ import pandas as pd
 import nasdaqdatalink
 import investpy as inv
 import lib_aws as aws
+from dotenv import load_dotenv
+
+# Load env
+load_dotenv(".env")
+NASDAQ_TOKEN = os.getenv('NASDAQ')
 
 def main():
 
@@ -20,7 +25,7 @@ def main():
     save_upload_parquet(session, bucket, fundamentus.get_resultado(), "fundamentus.parquet")
 
     # Get CDI from Nasdaq
-    save_upload_parquet(session, bucket, nasdaqdatalink.get("BCB/4391", authtoken="tixYdHPLhTfCwsD8zW2p"), "nasdaq.parquet")
+    save_upload_parquet(session, bucket, nasdaqdatalink.get("BCB/4391", authtoken=NASDAQ_TOKEN, "nasdaq.parquet")
 
     # Get list of tickets
     save_upload_parquet(session, bucket, inv.get_stocks(country='brazil'), "investpy.parquet")
