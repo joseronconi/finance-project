@@ -4,6 +4,7 @@ import nasdaqdatalink
 import investpy as inv
 import lib_aws as aws
 from dotenv import load_dotenv
+import os
 
 # Load env
 load_dotenv(".env")
